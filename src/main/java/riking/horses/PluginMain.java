@@ -77,35 +77,38 @@ public class PluginMain extends JavaPlugin implements Listener {
     }
 
     public String getStyleString(Horse.Style style) {
+        String name = style.toString().toLowerCase();
         switch (style) {
         case NONE:
-            return "Clean";
+            name = "clean";
         case BLACK_DOTS:
-            return "Sooty";
+            name = "sooty";
         case WHITE:
-            return "Socked";
+            name = "socked";
         case WHITE_DOTS:
-            return "Spotted";
+            name = "spotted";
         case WHITEFIELD:
-            return "Striped";
+            name = "striped";
         }
-        return StringUtils.capitalize(style.toString().toLowerCase());
+        return ChatColor.GOLD + StringUtils.capitalize(name) + ChatColor.RESET;
     }
 
     public String getColorString(Horse.Color color) {
         if (color == Horse.Color.DARK_BROWN) {
-            return "Dark Brown";
+            return ChatColor.BLUE + "Dark Brown" + ChatColor.RESET;
         }
-        return StringUtils.capitalize(color.toString().toLowerCase());
+        return ChatColor.BLUE + StringUtils.capitalize(color.toString().toLowerCase()) + ChatColor.RESET;
     }
 
-    public String getVariantString(Horse.Variant variant) {
+    public String getVariantString(Horse horse) {
+        Horse.Variant variant = horse.getVariant();
+        String baby = (horse.isAdult()) ? ("") : (ChatColor.LIGHT_PURPLE + "baby ");
         if (variant == Horse.Variant.SKELETON_HORSE) {
-            return "Skeleton horse";
+            return baby + ChatColor.AQUA + "Skeleton horse" + ChatColor.RESET;
         } else if (variant == Horse.Variant.UNDEAD_HORSE) {
-            return "Undead horse";
+            return baby + ChatColor.AQUA + "Undead horse" + ChatColor.RESET;
         }
-        return StringUtils.capitalize(variant.toString().toLowerCase());
+        return baby + ChatColor.AQUA + StringUtils.capitalize(variant.toString().toLowerCase()) + ChatColor.RESET;
     }
 
     private Horse getTargetHorse(Player player) {
