@@ -1,0 +1,9 @@
+name: horsedata
+version: 1.0
+main: riking.horses.PluginMain
+
+commands:
+    horse:
+        usage: /horse
+        aliases: [h]
+        description: Get horse info.
