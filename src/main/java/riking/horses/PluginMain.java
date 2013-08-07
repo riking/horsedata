@@ -57,7 +57,7 @@ public class PluginMain extends JavaPlugin implements Listener {
             if (horse.getOwner() == null) {
                 sender.sendMessage(String.format("It is %suntamed%s (%d).", ChatColor.DARK_RED, ChatColor.RESET, horse.getDomestication()));
             } else {
-                sender.sendMessage("It is " + ChatColor.DARK_GREEN + "tamed" + ChatColor.RESET + ", originally by " + ChatColor.YELLOW + horse.getOwner().getName() + ChatColor.RESET + ".");
+                sender.sendMessage(String.format("It is %stamed%s, originally by %s.", ChatColor.DARK_GREEN, ChatColor.RESET, ChatColor.YELLOW + horse.getOwner().getName() + ChatColor.RESET));
             }
             double jump = (horse.getJumpStrength() - 0.4D) * 10.0D + 0.24D;
             double health = horse.getMaxHealth();
