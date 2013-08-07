@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -50,9 +51,14 @@ public class PluginMain extends JavaPlugin implements Listener {
             Horse.Color col = horse.getColor();
             Horse.Style sty = horse.getStyle();
             if (var != Horse.Variant.HORSE) {
-                sender.sendMessage("That is a " + ChatColor.AQUA + getVariantString(var) + ChatColor.RESET + ".");
+                if (var == Horse.Variant.MULE) {
+                    String chestStr = horse.getInventory().getArmor().getType() == Material.CHEST ? (ChatColor.GREEN + "a") : (ChatColor.RED + "no");
+                    sender.sendMessage(String.format("That is a %s with %s chest%s.", getVariantString(horse), ChatColor.RESET, chestStr, ChatColor.RESET));
+                } else {
+                    sender.sendMessage(String.format("That is a %s.", getVariantString(horse)));
+                }
             } else {
-                sender.sendMessage("That is a " + ChatColor.GOLD + getStyleString(sty) + ChatColor.RESET + " " + ChatColor.BLUE + getColorString(col) + ChatColor.RESET + " " + ChatColor.AQUA + "horse" + ChatColor.RESET + ".");
+                sender.sendMessage(String.format("That is a %s %s %s.", getStyleString(sty), getColorString(col), getVariantString(horse)));
             }
             if (horse.getOwner() == null) {
                 sender.sendMessage(String.format("It is %suntamed%s (%d).", ChatColor.DARK_RED, ChatColor.RESET, horse.getDomestication()));
