@@ -55,7 +55,7 @@ public class PluginMain extends JavaPlugin implements Listener {
             if (var != Horse.Variant.HORSE) {
                 if (var == Horse.Variant.MULE || var == Horse.Variant.DONKEY) {
                     String chestStr = horse.isCarryingChest() ? (ChatColor.GREEN + "a") : (ChatColor.RED + "no");
-                    sender.sendMessage(String.format("That is a %s with %s chest%s.", getVariantString(horse), ChatColor.RESET, chestStr, ChatColor.RESET));
+                    sender.sendMessage(String.format("That is a %s with %s%s chest%s.", getVariantString(horse), ChatColor.RESET, chestStr, ChatColor.RESET));
                 } else {
                     sender.sendMessage(String.format("That is a %s.", getVariantString(horse)));
                 }
