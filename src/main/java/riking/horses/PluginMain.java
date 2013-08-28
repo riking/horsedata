@@ -42,14 +42,17 @@ public class PluginMain extends JavaPlugin implements Listener {
                 }
                 player = (Player) sender;
             }
+
             Horse horse = getTargetHorse(player);
             if (horse == null) {
                 sender.sendMessage(ChatColor.RED + "No nearby horses!");
                 return true;
             }
+
             Horse.Variant var = horse.getVariant();
             Horse.Color col = horse.getColor();
             Horse.Style sty = horse.getStyle();
+
             if (var != Horse.Variant.HORSE) {
                 if (var == Horse.Variant.MULE || var == Horse.Variant.DONKEY) {
                     String chestStr = horse.isCarryingChest() ? (ChatColor.GREEN + "a") : (ChatColor.RED + "no");
@@ -60,11 +63,13 @@ public class PluginMain extends JavaPlugin implements Listener {
             } else {
                 sender.sendMessage(String.format("That is a %s %s %s.", getStyleString(sty), getColorString(col), getVariantString(horse)));
             }
+
             if (horse.getOwner() == null) {
                 sender.sendMessage(String.format("It is %suntamed%s (%d).", ChatColor.DARK_RED, ChatColor.RESET, horse.getDomestication()));
             } else {
                 sender.sendMessage(String.format("It is %stamed%s, originally by %s.", ChatColor.DARK_GREEN, ChatColor.RESET, ChatColor.YELLOW + horse.getOwner().getName() + ChatColor.RESET));
             }
+
             double jump = (horse.getJumpStrength() - 0.4D) * 10.0D + 0.24D;
             double health = horse.getMaxHealth();
             double speed = 0;
@@ -77,6 +82,7 @@ public class PluginMain extends JavaPlugin implements Listener {
             } else {
                 sender.sendMessage(String.format("Health: %s%.1f%s Jump: %s%.3f%s", ChatColor.RED, health, ChatColor.RESET, ChatColor.YELLOW, jump, ChatColor.RESET));
             }
+
             return true;
         }
         return false;
@@ -132,8 +138,12 @@ public class PluginMain extends JavaPlugin implements Listener {
         return horses.get(0);
     }
 
+    /**
+     * Sort nearby horses. The 'best' horse goes to the "bottom", position 0.
+     */
     class HorseComparator implements Comparator<Horse> {
         private Player player;
+
         public HorseComparator(Player player) {
             this.player = player;
         }
@@ -147,7 +157,7 @@ public class PluginMain extends JavaPlugin implements Listener {
             if (riddenByPlayer(horse1)) {
                 offset += -20;
             } else if (riddenByPlayer(horse2)) {
-                offset +=  20;
+                offset += 20;
             }
             if (leashedByPlayer(horse1)) {
                 if (!leashedByPlayer(horse2)) {
