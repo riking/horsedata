@@ -9,7 +9,6 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -77,6 +76,7 @@ public class PluginMain extends JavaPlugin implements Listener {
                 speed = Unsafe.getHorseSpeed(horse) * 30D;
             } catch (Throwable t) {
             }
+            // TODO add another try block using Attributes api when released, remove it 2 weeks after RB
             if (speed != 0) {
                 sender.sendMessage(String.format("Health: %s%.1f%s Jump: %s%.3f%s Speed: %s%.3f%s", ChatColor.RED, health, ChatColor.RESET, ChatColor.YELLOW, jump, ChatColor.RESET, ChatColor.GREEN, speed, ChatColor.RESET));
             } else {
