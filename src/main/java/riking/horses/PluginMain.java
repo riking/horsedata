@@ -37,7 +37,7 @@ public class PluginMain extends JavaPlugin implements Listener {
                 }
             } else {
                 if (!(sender instanceof Player)) {
-                    sender.sendMessage(ChatColor.RED + "This command is players-only.");
+                    sender.sendMessage(ChatColor.RED + "You must specify a player to search near.");
                     return true;
                 }
                 player = (Player) sender;
