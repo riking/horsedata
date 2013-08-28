@@ -106,21 +106,23 @@ public class PluginMain extends JavaPlugin implements Listener {
     }
 
     public String getColorString(Horse.Color color) {
+        String name = color.toString().toLowerCase();
         if (color == Horse.Color.DARK_BROWN) {
-            return ChatColor.BLUE + "Dark Brown" + ChatColor.RESET;
+            name = "Dark Brown";
         }
-        return ChatColor.BLUE + StringUtils.capitalize(color.toString().toLowerCase()) + ChatColor.RESET;
+        return ChatColor.BLUE + StringUtils.capitalize(name) + ChatColor.RESET;
     }
 
     public String getVariantString(Horse horse) {
         Horse.Variant variant = horse.getVariant();
         String baby = (horse.isAdult()) ? ("") : (ChatColor.LIGHT_PURPLE + "baby ");
+        String name = variant.toString().toLowerCase();
         if (variant == Horse.Variant.SKELETON_HORSE) {
-            return baby + ChatColor.AQUA + "Skeleton horse" + ChatColor.RESET;
+            name = "Skeleton horse";
         } else if (variant == Horse.Variant.UNDEAD_HORSE) {
-            return baby + ChatColor.AQUA + "Undead horse" + ChatColor.RESET;
+            name = "Undead horse";
         }
-        return baby + ChatColor.AQUA + StringUtils.capitalize(variant.toString().toLowerCase()) + ChatColor.RESET;
+        return baby + ChatColor.AQUA + StringUtils.capitalize(name) + ChatColor.RESET;
     }
 
     private Horse getTargetHorse(Player player) {
