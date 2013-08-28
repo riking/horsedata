@@ -32,12 +32,12 @@ public class PluginMain extends JavaPlugin implements Listener {
             if (args.length != 0) {
                 player = Bukkit.getPlayer(args[0]);
                 if (player == null) {
-                    sender.sendMessage(ChatColor.RED + "Player could not be found. Try tab-completing?");
+                    sender.sendMessage(String.format("%sPlayer '%s' could not be found. Try tab-completing?", ChatColor.RED, args[0]));
                     return true;
                 }
             } else {
                 if (!(sender instanceof Player)) {
-                    sender.sendMessage(ChatColor.RED + "Command is players-only.");
+                    sender.sendMessage(ChatColor.RED + "This command is players-only.");
                     return true;
                 }
                 player = (Player) sender;
