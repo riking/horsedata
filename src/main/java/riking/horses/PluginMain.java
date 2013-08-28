@@ -70,7 +70,7 @@ public class PluginMain extends JavaPlugin implements Listener {
             }
 
             double jump = (horse.getJumpStrength() - 0.4D) * 10.0D + 0.24D;
-            double health = horse.getMaxHealth();
+            double health = horse.getMaxHealth() / 2;
             double speed = 0;
             try {
                 speed = Unsafe.getHorseSpeed(horse) * 30D;
@@ -78,9 +78,9 @@ public class PluginMain extends JavaPlugin implements Listener {
             }
             // TODO add another try block using Attributes api when released, remove it 2 weeks after RB
             if (speed != 0) {
-                sender.sendMessage(String.format("Health: %s%.1f%s Jump: %s%.3f%s Speed: %s%.3f%s", ChatColor.RED, health, ChatColor.RESET, ChatColor.YELLOW, jump, ChatColor.RESET, ChatColor.GREEN, speed, ChatColor.RESET));
+                sender.sendMessage(String.format("Health: %s%.1f hearts%s Jump: %s%.3f blocks%s Speed: %s%.3f blocks/sec%s", ChatColor.RED, health, ChatColor.RESET, ChatColor.YELLOW, jump, ChatColor.RESET, ChatColor.GREEN, speed, ChatColor.RESET));
             } else {
-                sender.sendMessage(String.format("Health: %s%.1f%s Jump: %s%.3f%s", ChatColor.RED, health, ChatColor.RESET, ChatColor.YELLOW, jump, ChatColor.RESET));
+                sender.sendMessage(String.format("Health: %s%.1f hearts%s Jump: %s%.3f blocks%s", ChatColor.RED, health, ChatColor.RESET, ChatColor.YELLOW, jump, ChatColor.RESET));
             }
 
             return true;
